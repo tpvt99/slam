@@ -1,0 +1,61 @@
+# Object Files
+*.o
+*.obj
+
+# Libraries
+*.lib
+*.a
+
+# Shared Objects / DLLs
+*.dll
+*.so
+
+# Executables
+*.exe
+*.out
+
+# Build directories
+build/
+Debug/
+Release/
+
+# CMake Files
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+
+# Visual Studio
+*.suo
+*.user
+*.sln.docstates
+*.vcxproj
+*.vcxproj.filters
+
+# CLion
+.idea/
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Dependencies
+.conan/
