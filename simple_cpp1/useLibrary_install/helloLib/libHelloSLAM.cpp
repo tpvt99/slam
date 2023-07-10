@@ -2,5 +2,5 @@
 using namespace std;
 
 void printHello() {
-    cout << "Hello SLAM Library" << endl;
+    cout << "Hello SLAM Library Install" << endl;
 }

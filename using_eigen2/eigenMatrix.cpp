@@ -49,4 +49,12 @@ int main(int argc, char **argv) {
     Matrix<float, 2, 1> result2 = matrix_23 * vd_3d;
     cout << "[1, 2, 3; 4, 5, 6] * [3, 2, 1] = " << result2 << endl;
 
+    //Matrix operations
+    matrix_33 = Matrix3d::Random(); // Random matrix
+    cout << matrix_33 << endl;
+    cout << "transpose: " << matrix_33.transpose() << endl;
+    cout << "det: " << matrix_33.determinant() << endl;
+
+    // Solving equation
+
 }
