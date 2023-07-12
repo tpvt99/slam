@@ -4,10 +4,10 @@ using namespace std;
 
 #include <ctime>
 // Eigen core
-#include <eigen3/Eigen/Core>
+#include "Eigen/Core"
 // Algebraic operation
 // #include <eigen3/Eigen/Dense> this works
-#include <Eigen/Dense> // To work, must include the header in cmake file
+#include "Eigen/Dense" // To work, must include the header in cmake file
 
 using namespace Eigen;
 
