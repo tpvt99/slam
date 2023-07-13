@@ -4,3 +4,9 @@
 [submodule "3rdparty/eigen"]
 	path = 3rdparty/eigen
 	url = https://gitlab.com/libeigen/eigen.git
+[submodule "3rdparty/Sophus"]
+	path = 3rdparty/Sophus
+	url = https://github.com/strasdat/Sophus.git
+[submodule "3rdparty/fmt"]
+	path = 3rdparty/fmt
+	url = https://github.com/fmtlib/fmt.git
