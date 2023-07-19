@@ -9,7 +9,9 @@ using namespace Eigen;
 
 int main(int argc, char **argv) {
     // Rotation matrix with 90 degrees along Z axis
-    Matrix3d R = AngleAxisd(M_PI / 2, Vector3d(0, 0, 1)).toRotationMatrix();
+    Vector3d v(1, 2, 1);
+    v.normalize();
+    Matrix3d R = AngleAxisd(M_PI / 2, v).toRotationMatrix();
     // Convert to quaternion
     Quaterniond q(R);
 
@@ -31,4 +33,22 @@ int main(int argc, char **argv) {
     cout << "so3 hat = " << endl << so3_hat << endl;
     // Vee to turn skew-symmetric matrix to vector
     cout << "so3 hat vee = " << Sophus::SO3d::vee(so3_hat).transpose() << endl;
+
+    // Now I turn to logarithmic mapping using raw formula instead .log()
+    double trace = R.trace();
+    EigenSolver<Matrix3d> eigenSolver(R);
+    cout << "Eigen vectors: " << endl << eigenSolver.eigenvectors() << endl;
+    cout << "Eigen values: " << endl << eigenSolver.eigenvalues() << endl;
+    cout << "Trace of R: " << trace << endl;
+    // Get the eigen vector corresponding to eigenvalue of 1
+    Vector3d eigenVector;
+    for (int i = 0; i < 3; i++) {
+        if (abs(eigenSolver.eigenvalues()[i].real() - 1) < 1e-6) {
+            eigenVector = eigenSolver.eigenvectors().col(i).real();
+            break;
+        }
+    }
+    double theta = acos((trace - 1) / 2);
+    cout << "so3 = " << theta * eigenVector.transpose() << endl; // this should be the same as .log()
+    // Get the eigen vector of largest eigenvalue
 }

@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "core": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/workspaces/slam/3rdparty/Sophus"
 }
