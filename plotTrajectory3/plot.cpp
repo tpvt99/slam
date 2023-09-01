@@ -6,7 +6,7 @@ using namespace std;
 using namespace Eigen;
 
 // Path: plotTrajectory3/plot.cpp
-string trajectory_file = "trajectory.txt";
+string trajectory_file = "../trajectory.txt"; // relative path from build directory
 
 void DrawTrajectory(vector<Isometry3d, Eigen::aligned_allocator<Isometry3d>>);
 
@@ -43,8 +43,8 @@ void DrawTrajectory(vector<Isometry3d, Eigen::aligned_allocator<Isometry3d>> pos
     );
 
     pangolin::View &d_cam = pangolin::CreateDisplay()
-        .setBounds(0.0, 1.0, 0.0, 1.0, -1024.0f / 768.0f)
-        .setHandler(new pangolin::Handler3D(scam));
+        .SetBounds(0.0, 1.0, 0.0, 1.0, -1024.0f / 768.0f)
+        .SetHandler(new pangolin::Handler3D(scam));
     
     while (pangolin::ShouldQuit() == false) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -67,7 +67,7 @@ void DrawTrajectory(vector<Isometry3d, Eigen::aligned_allocator<Isometry3d>> pos
             glColor3f(0.0, 0.0, 1.0);
             glVertex3d(Ow[0], Ow[1], Ow[2]);
             glVertex3d(Zw[0], Zw[1], Zw[2]);
-            gl.End();
+            glEnd();
         }
         // draw a connection
         for (size_t i = 0; i < poses.size()-1; i++) {

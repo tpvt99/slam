@@ -17,6 +17,7 @@ int main(int argc, char **argv) {
 
     cout << "Rotation matrix: " << endl << R << endl;
     cout << "Quaternion: " << endl << q.coeffs() << endl;
+    cout << "Rotation vector: " << endl << q.vec() << endl;
 
     // Sophus SO3d
     Sophus::SO3d SO3_R(R); // Construct from rotation matrix
@@ -50,5 +51,31 @@ int main(int argc, char **argv) {
     }
     double theta = acos((trace - 1) / 2);
     cout << "so3 = " << theta * eigenVector.transpose() << endl; // this should be the same as .log()
-    // Get the eigen vector of largest eigenvalue
+    // From so3 to SO3 by exponential model
+    Sophus::SO3d matrix = Sophus::SO3d::exp(so3);
+    Eigen::Matrix3d rotation_matrix = matrix.matrix();
+    cout << "SO3 from so3 = " << endl << rotation_matrix << endl;
+
+    // Purturbation model
+    Vector3d update_sol3(1e-4, 0, 0); // this is a small update
+    Sophus::SO3d update_SO3 = Sophus::SO3d::exp(update_sol3) * SO3_R;
+    cout << "SO3 update = " << "\n" << update_SO3.matrix() << endl;
+
+    cout << "*********************" << endl;
+
+    Eigen::Vector3d v1(1, 3, 5);
+    Eigen::Vector3d v2(2, 3, 4);
+
+    double dotprod = v1.dot(v2);
+    cout << dotprod << endl;
+
+    // OUter product
+    Eigen::Matrix3d outerprod = v1 * v2.transpose();
+    cout << outerprod << endl;
+    // Cross product
+    Eigen::Vector3d crossprod = v1.cross(v2); 
+    cout << crossprod << endl;
+    // Cross product using skew-symmetric matrix
+    Eigen::Vector3d crossprod2 = Sophus::SO3d::hat(v1) * v2;
+    cout << crossprod2 << endl;
 }

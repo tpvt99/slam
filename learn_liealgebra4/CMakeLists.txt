@@ -16,6 +16,7 @@ FetchContent_MakeAvailable(fmtlib)
 
 #find_package(Sophus REQUIRED)
 #include_directories(${Sophus_INCLUDE_DIRS})
+
 include_directories("../3rdparty/Sophus")
 include_directories("../3rdparty/eigen")
 

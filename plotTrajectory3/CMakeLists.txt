@@ -3,17 +3,8 @@ project(DisplayTrajectory)
 
 add_executable(run plot.cpp)
 
-include_directories("../3rdparty/eigen")
-include_directories("../3rdparty/Pangolin")
+find_package(Pangolin REQUIRED)
+include_directories(${Pangolin_INCLUDE_DIRS})
 
+target_link_libraries(run ${Pangolin_LIBRARIES})
 
-
-include(FetchContent)
-
-FetchContent_Declare(
-  libglew
-  GIT_REPOSITORY https://github.com/nigels-com/glew.git
-  GIT_TAG        gloew-2.2.0
-)
-
-FetchContent_MakeAvailable(libglew)
